@@ -1,4 +1,4 @@
-export const PORT = 3030;
+export const PORT = 3000;
 
 export const JWT_SECRET = 'rVc1dnSI2uWpxq21T78IXnNiGOIaAy31';
 
