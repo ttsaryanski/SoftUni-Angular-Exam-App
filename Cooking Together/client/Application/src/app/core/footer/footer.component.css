@@ -42,6 +42,6 @@ footer p {
 }
 
 .resized-image {
-    width: 36px; /* Новата ширина */
-    height: auto; /* Автоматична височина за запазване на пропорциите */
+    width: 36px;
+    height: auto;
   }
