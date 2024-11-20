@@ -30,3 +30,21 @@ body {
     height: 100vh; */
 
 }
+
+@keyframes cssAnimation {
+    to {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+  }
+  
+  @-webkit-keyframes cssAnimation {
+    to {
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      padding: 0;
+    }
+  }
