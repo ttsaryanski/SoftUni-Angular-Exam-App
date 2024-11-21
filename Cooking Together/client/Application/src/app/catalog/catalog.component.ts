@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RecipeComponent } from '../recipe/recipe.component';
+import { RecipeComponent } from '../recipes/recipe/recipe.component';
 
 @Component({
   selector: 'app-catalog',

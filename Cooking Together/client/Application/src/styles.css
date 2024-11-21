@@ -31,6 +31,14 @@ body {
 
 }
 
+/* Main section */
+main {
+  padding: 2em 1em;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
 @keyframes cssAnimation {
     to {
       width: 0;

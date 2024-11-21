@@ -1,12 +1,4 @@
-/* Main section */
-main {
-    padding: 2em 1em;
-    max-width: 600px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-  }
-
-  h2 {
+h2 {
     text-align: center;
     margin-bottom: 0.5em;
     font-size: 45px;
@@ -15,7 +7,7 @@ main {
     text-transform: none;
     text-shadow: cornflowerblue;
     font-weight: bold;
-    background:#f2edc3;
+    background: #f2edc3;
     padding: 30px;
     margin-top: 30px;
     border: 3px;
