@@ -20,8 +20,6 @@ import { MatchPasswordDirective } from '../../directives/match-password.directiv
 })
 export class RegisterComponent {
   register(form: NgForm) {
-    console.log(form.invalid);
-
     if (form.invalid) {
       return;
     }

@@ -53,3 +53,11 @@
   transform: scale(1.05);
 }
 
+.error {
+  color: red;
+}
+
+.border-error {
+  border-color: red !important;
+}
+
