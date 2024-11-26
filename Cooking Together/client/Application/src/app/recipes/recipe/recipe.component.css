@@ -52,6 +52,7 @@
     transition: background 0.3s, transform 0.3s;
     font-weight: 400;
     margin: 1em;
+    border-radius: 30px;
     text-transform: uppercase;
 }
 

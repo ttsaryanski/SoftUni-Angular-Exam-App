@@ -24,7 +24,8 @@
     transition: background 0.3s, transform 0.3s;
     font-weight: 400;
     margin-top: 1em;
-    text-transform: uppercase;
+    border-radius: 30px;
+    /* text-transform: uppercase; */
 }
 
 .home a:hover {
@@ -36,13 +37,14 @@
 h2 {
     text-align: center;
     /* margin-bottom: 0.5em; */
-    font-size: 45px;
+    font-size: 55px;
     color: #d32f23;
     font-weight: 700;
     text-transform: none;
+    
     text-shadow: cornflowerblue;
     font-weight: bold;
-    background: #f2edc3;
+    /* background: #f2edc3; */
     padding: 20px;
     /* margin-top: 10px; */
     /* border: 3px;
