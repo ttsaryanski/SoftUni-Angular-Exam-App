@@ -1,14 +1,22 @@
 <header>
-    <img src="cook.png" alt="cook" class="logo">
-    <nav>
-        <ul>
-            <li><a routerLink="/home">Начало</a></li>
-            <li><a routerLink="/catalog">Всички рецепти</a></li>
-            <li><a href="#">Search</a></li>
-            <li><a routerLink="/create">Добави твоята рецепта</a></li>
-            <li><a routerLink="/login">Вход</a></li>
-            <li><a routerLink="/register">Регистрация</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </nav>
+  <img src="cook.png" alt="cook" class="logo" />
+  <nav>
+    <ul>
+      <li><a routerLink="/home">Начало</a></li>
+      <li><a routerLink="/catalog">Всички рецепти</a></li>
+      <li><a href="#">Search</a></li>
+    </ul>
+  </nav>
+  <div class="nav">
+    @if (isAuthenticated) {
+    <li><a routerLink="/create">Добави твоята рецепта</a></li>
+    <li>
+      <a routerLink="/profile">{{ name }}'s profile</a>
+    </li>
+    <li><a href="#">Logout</a></li>
+    }@else {
+    <li><a routerLink="/login">Вход</a></li>
+    <li><a routerLink="/register">Регистрация</a></li>
+    }
+  </div>
 </header>
