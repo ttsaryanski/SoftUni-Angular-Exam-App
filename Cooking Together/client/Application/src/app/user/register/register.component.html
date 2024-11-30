@@ -1,25 +1,28 @@
+@if (hasError) {
+<app-error-msg />
+}
 <div class="main">
   <section class="register">
     <h2>Регистрация</h2>
     <form #form="ngForm" (ngSubmit)="register(form)">
       <label for="name">Name:</label>
       <input
-        [class]="setNameClass(name)"
+        [class]="setNameClass(username)"
         type="text"
-        id="name"
-        name="name"
+        id="username"
+        name="username"
         ngModel
-        #name="ngModel"
+        #username="ngModel"
         required
         minlength="3"
       />
-      @if (name?.touched) {
+      @if (username?.touched) {
       <div>
-        @if (name?.errors?.['required']) {
+        @if (username?.errors?.['required']) {
         <p class="error">Name is required!</p>
         }
         <!-- -->
-        @if (name?.errors?.['minlength']) {
+        @if (username?.errors?.['minlength']) {
         <p class="error">Name must be at least 3 characters!</p>
         }
       </div>

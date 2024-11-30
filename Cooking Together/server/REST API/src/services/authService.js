@@ -9,7 +9,7 @@ const register = async (username, email, password) => {
   const user = await User.findOne({ username, email });
 
   if (user) {
-    throw new Error("This email already registered!");
+    throw new Error("This username or email already registered!");
   }
 
   const createdUser = await User.create({ username, email, password });
@@ -33,13 +33,9 @@ const login = async (email, password) => {
   return createAccessToken(user);
 };
 
-const logout = async (token) => {
-  try {
-    await InvalidToken.create({ token });
-  } catch (error) {
-    throw new Error("Action failed!");
-  }
-};
+const logout = (token) => InvalidToken.create({ token });
+
+const getUserById = (id) => User.findById(id);
 
 async function createAccessToken(user) {
   const payload = {
@@ -51,9 +47,7 @@ async function createAccessToken(user) {
   const token = await jwt.sign(payload, JWT_SECRET, { expiresIn: "2h" });
 
   return {
-    _id: user._id,
-    username: user.username,
-    email: user.email,
+    user,
     accessToken: token,
   };
 }
@@ -62,4 +56,5 @@ export default {
   register,
   login,
   logout,
+  getUserById,
 };

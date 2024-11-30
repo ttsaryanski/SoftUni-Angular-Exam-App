@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../../types/user';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,21 @@ import { User } from '../../types/user';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  name: string = 'Tsvetan';
-  isAuthenticated: boolean = false;
+  constructor(private userService: UserService, private router: Router) {}
+
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
+
+  get name(): string {
+    return this.userService.user?.username || '';
+  }
+
+  logout(event: Event) {
+    event.preventDefault();
+
+    this.userService.logout().subscribe(() => {
+      this.router.navigate(['/home']);
+    });
+  }
 }

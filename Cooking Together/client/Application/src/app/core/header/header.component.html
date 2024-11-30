@@ -7,16 +7,16 @@
       <li><a href="#">Search</a></li>
     </ul>
   </nav>
-  <div class="nav">
-    @if (isAuthenticated) {
+  <ul class="nav">
+    @if (isLoggedIn) {
     <li><a routerLink="/create">Добави твоята рецепта</a></li>
     <li>
       <a routerLink="/profile">{{ name }}'s profile</a>
     </li>
-    <li><a href="#">Logout</a></li>
-    }@else {
+    <li><a href="#" (click)="logout($event)">Logout</a></li>
+    } @else {
     <li><a routerLink="/login">Вход</a></li>
     <li><a routerLink="/register">Регистрация</a></li>
     }
-  </div>
+  </ul>
 </header>
