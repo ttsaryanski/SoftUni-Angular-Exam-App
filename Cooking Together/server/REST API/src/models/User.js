@@ -8,18 +8,21 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     required: [true, "Email is required!"],
-    //minLength: [10, 'Email should be at least 10 characters long!']
+    minLength: [3, "Username should be at least 3 characters long!"],
   },
   email: {
     type: String,
     unique: true,
     required: [true, "Email is required!"],
-    //minLength: [10, 'Email should be at least 10 characters long!']
+    validate: [
+      /^[A-Za-z0-9._%+-]{3,}@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+      "Invalid email!",
+    ],
   },
   password: {
     type: String,
     required: [true, "Password is required!"],
-    //minLength: [4, 'Password should be at least 4 characters long!']
+    minLength: [3, "Password should be at least 3 characters long!"],
   },
   dateCreated: {
     type: Date,
