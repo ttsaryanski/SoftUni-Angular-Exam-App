@@ -11,5 +11,5 @@ import { User } from '../../types/user';
 })
 export class HeaderComponent {
   name: string = 'Tsvetan';
-  isAuthenticated: boolean = true;
+  isAuthenticated: boolean = false;
 }

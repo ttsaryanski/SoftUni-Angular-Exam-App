@@ -5,4 +5,17 @@ export interface User {
   password: string;
   created_at: string;
   updatedAt: string;
+  recipes: string[];
+}
+
+export interface UserForAuth {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface ProfileDetails {
+  username: string;
+  email: string;
 }
