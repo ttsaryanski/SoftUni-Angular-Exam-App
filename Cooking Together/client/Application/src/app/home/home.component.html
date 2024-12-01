@@ -5,7 +5,7 @@
     <a routerLink="/catalog" class="btn">към каталога</a>
   </section>
   <section class="featured-recipes">
-    <h3>Най-вкусните</h3>
+    <h2>Най-вкусните</h2>
     @if (isLoading) {
     <app-loader />
     }
@@ -23,7 +23,9 @@
         <p>{{ recipe.description }}</p>
         <a href="#">Read More</a>
       </article>
-      } }
+      }
+      <!-- -->
+      }
       <!-- -->
       @else {
       <p class="no-post">There are no recipes found yet!</p>

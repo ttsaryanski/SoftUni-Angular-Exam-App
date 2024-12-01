@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RecipeComponent } from '../recipes/recipe/recipe.component';
 import { LoaderComponent } from '../shared/loader/loader.component';
 import { RecipesService } from '../recipes/recipes.service';
 import { Recipe } from '../types/recipe';
