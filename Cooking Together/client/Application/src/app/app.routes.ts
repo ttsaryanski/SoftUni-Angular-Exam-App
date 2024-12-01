@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { CatalogComponent } from './catalog/catalog.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { CreateComponent } from './recipes/create/create.component';
 import { Page404Component } from './page404/page404/page404.component';
+import { CatalogComponent } from './recipes/catalog/catalog.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
