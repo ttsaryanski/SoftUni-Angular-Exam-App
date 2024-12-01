@@ -1,0 +1,37 @@
+.error-page {
+  text-align: center;
+  padding: 4em 1em;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 4em auto;
+}
+
+.error-page h2 {
+  font-size: 6em;
+  color: #2c3e50;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+}
+
+.error-page p {
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.error-page .btn {
+  background-color: #d32f23;
+  color: #f2edc3;
+  padding: 0.75em 1.5em;
+  text-decoration: none;
+  font-weight: 400;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
+.error-page .btn:hover {
+  background-color: #f2edc3;
+  color: #d32f23;
+  transform: scale(1.05);
+}
