@@ -19,7 +19,16 @@ export class RecipesService {
     });
   }
 
-  create(
+  getRecipe(limit?: number) {
+    let url = `/api/item`;
+    if (limit) {
+      url += `?limit=${limit}`;
+    }
+
+    return this.http.get<Recipe[]>(url);
+  }
+
+  createRecipe(
     title: string,
     description: string,
     ingredients: string,

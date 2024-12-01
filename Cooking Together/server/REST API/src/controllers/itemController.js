@@ -12,9 +12,12 @@ router.get("/", async (req, res) => {
   try {
     const items = await itemService.getAll(query);
 
-    res.json(items);
+    res.status(200).json(items).end();
   } catch (error) {
-    res.status(500).json({ message: createErrorMsg(error) });
+    res
+      .status(500)
+      .json({ message: createErrorMsg(error) })
+      .end();
   }
 });
 

@@ -40,7 +40,7 @@ export class CreateComponent {
       form.value;
 
     this.recipesService
-      .create(title, description, ingredients, instructions, imageUrl)
+      .createRecipe(title, description, ingredients, instructions, imageUrl)
       .subscribe({
         next: () => {
           this.hasError = false;
