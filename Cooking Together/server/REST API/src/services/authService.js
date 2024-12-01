@@ -6,7 +6,7 @@ import InvalidToken from "../models/InvalidToken.js";
 import { JWT_SECRET } from "../config/constans.js";
 
 const register = async (username, email, password) => {
-  const user = await User.findOne({ username, email });
+  const user = await User.findOne({ $or: [{ username }, { email }] });
 
   if (user) {
     throw new Error("This username or email already registered!");

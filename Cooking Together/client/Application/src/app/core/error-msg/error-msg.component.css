@@ -1,10 +1,11 @@
 .notification {
-  position: fixed;
+  /* position: fixed; */
   z-index: 10;
   right: 8%;
   top: 8%;
   padding: 0.5rem;
-  border-radius: 0.5rem;
+  margin-bottom: 15px;
+  /* border-radius: 0.5rem; */
   color: rgb(255, 255, 255);
   font-style: italic;
   text-decoration: underline;

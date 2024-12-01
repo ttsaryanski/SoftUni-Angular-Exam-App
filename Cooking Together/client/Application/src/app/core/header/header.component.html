@@ -11,7 +11,7 @@
     @if (isLoggedIn) {
     <li><a routerLink="/create">Добави твоята рецепта</a></li>
     <li>
-      <a routerLink="/profile">Добре дошъл {{ name }}</a>
+      <a class="no-uppercase" routerLink="/profile">ДОБРЕ ДОШЪЛ {{ name }}</a>
     </li>
     <li><a href="#" (click)="logout($event)">Изход</a></li>
     } @else {
