@@ -18,11 +18,11 @@ export function setEmailErrorClass(email: any): string {
   return '';
 }
 
-export function setPassErrorClass(pass: any): string {
-  if (pass?.touched && pass?.errors?.['required']) {
+export function setImgErrorClass(email: any): string {
+  if (email?.touched && email?.errors?.['required']) {
     return 'border-error';
   }
-  if (pass?.touched && pass?.errors?.['minlength']) {
+  if (email?.touched && email?.errors?.['imageUrlValidator']) {
     return 'border-error';
   }
   return '';

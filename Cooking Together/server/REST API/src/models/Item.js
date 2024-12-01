@@ -3,23 +3,23 @@ import { Schema, model, Types } from "mongoose";
 const itemSchema = new Schema({
   title: {
     type: String,
-    required: [true, "Make is required!"],
-    // minLength: [4, 'Make should be at least 4 characters long!']
+    required: [true, "Title is required!"],
+    minLength: [5, "Title should be at least 5 characters long!"],
   },
   description: {
     type: String,
     required: [true, "Description is required!"],
-    // minLength: [10, 'Description should be at least 10 characters long!']
+    minLength: [10, "Description should be at least 10 characters long!"],
   },
   ingredients: {
     type: String,
-    required: [true, "Model is required!"],
-    // minLength: [4, 'Model should be at least 4 characters long!']
+    required: [true, "Ingredients is required!"],
+    minLength: [10, "Ingredients should be at least 10 characters long!"],
   },
   instructions: {
     type: String,
-    required: [true, "Model is required!"],
-    // minLength: [4, 'Model should be at least 4 characters long!']
+    required: [true, "Instructions is required!"],
+    minLength: [10, "Instructions should be at least 10 characters long!"],
   },
   imageUrl: {
     type: String,

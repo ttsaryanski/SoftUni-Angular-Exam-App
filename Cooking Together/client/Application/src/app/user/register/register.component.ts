@@ -5,7 +5,6 @@ import {
   setButtonAttributes,
   setEmailErrorClass,
   setNameErrorClass,
-  setPassErrorClass,
   setRePassErrorClass,
 } from '../../utils/setClasses';
 import { EmailDirective } from '../../directives/email.directive';
@@ -71,7 +70,7 @@ export class RegisterComponent {
   }
 
   setPasswordClass(form: any) {
-    return setPassErrorClass(form);
+    return setNameErrorClass(form);
   }
 
   setRePassClass(form: any) {

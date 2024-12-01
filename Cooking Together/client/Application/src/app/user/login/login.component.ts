@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import {
   setButtonAttributes,
   setEmailErrorClass,
-  setPassErrorClass,
+  setNameErrorClass,
 } from '../../utils/setClasses';
 import { EmailDirective } from '../../directives/email.directive';
 import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
@@ -56,7 +56,7 @@ export class LoginComponent {
   }
 
   setPasswordClass(form: any) {
-    return setPassErrorClass(form);
+    return setNameErrorClass(form);
   }
 
   setButton(form: any) {
