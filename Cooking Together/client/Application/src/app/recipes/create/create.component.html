@@ -117,8 +117,9 @@
         <p class="error">Невалиден URL адрес!</p>
         }
       </div>
+      } @if (hasError) {
+      <app-error-msg />
       }
-
       <button
         [disabled]="setButton(form).disabled"
         [style]="setButton(form).style"

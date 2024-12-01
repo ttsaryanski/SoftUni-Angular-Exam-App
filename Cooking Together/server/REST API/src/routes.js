@@ -7,6 +7,6 @@ const routes = Router();
 
 //routes.use(homeController);
 routes.use("/auth", authController);
-routes.use("/Please change here!!!", itemControler);
+routes.use("/item", itemControler);
 
 export default routes;
