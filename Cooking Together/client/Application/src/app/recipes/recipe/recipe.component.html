@@ -1,7 +1,10 @@
 <article class="recipe">
-    <img src="https://gotvach.bg/files/1200x800/karbonarka.webp"
-        alt="Spaghetti carbonara">
-    <h3>Spaghetti carbonara</h3>
-    <p>A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.</p>
-    <a href="#">Read More</a>
+  <img
+    src="{{ recipe.imageUrl }}"
+    alt="{{ recipe.title }}"
+    class="responsive-image"
+  />
+  <h3>{{ recipe.title }}</h3>
+  <p>{{ recipe.description }}</p>
+  <a routerLink="/{{ recipe._id }}/details">Прочети повече</a>
 </article>

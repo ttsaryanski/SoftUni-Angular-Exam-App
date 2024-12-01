@@ -8,6 +8,9 @@ const getAll = (query = {}) => {
   if (query.where) {
     items.find(querystring.parse(query.where.replaceAll('"', "")));
   }
+  if (query.limit) {
+    items.find().limit(query.limit).sort({ dateUpdate: -1 });
+  }
 
   return items;
 };

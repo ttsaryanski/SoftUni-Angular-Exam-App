@@ -13,16 +13,7 @@
     @else {
     <div class="recipes">
       @if (recipes.length > 0) { @for (recipe of recipes; track $index) {
-      <article class="recipe">
-        <img
-          src="{{ recipe.imageUrl }}"
-          alt="{{ recipe.title }}"
-          class="responsive-image"
-        />
-        <h3>{{ recipe.title }}</h3>
-        <p>{{ recipe.description }}</p>
-        <a href="#">Read More</a>
-      </article>
+      <app-recipe [recipe]="recipe" />
       }
       <!-- -->
       }

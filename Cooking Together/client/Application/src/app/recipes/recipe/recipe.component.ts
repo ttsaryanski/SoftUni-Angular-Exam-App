@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
-import { LoaderComponent } from '../../shared/loader/loader.component';
+import { Component, Input } from '@angular/core';
+import { Recipe } from '../../types/recipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-recipe',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.css',
 })
-export class RecipeComponent {}
+export class RecipeComponent {
+  @Input() recipe!: Recipe;
+}

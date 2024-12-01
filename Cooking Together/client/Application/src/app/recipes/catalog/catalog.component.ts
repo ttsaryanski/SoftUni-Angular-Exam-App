@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { RecipesService } from '../recipes.service';
 import { Recipe } from '../../types/recipe';
+import { RecipeComponent } from '../recipe/recipe.component';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [LoaderComponent],
+  imports: [LoaderComponent, RecipeComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css',
 })
