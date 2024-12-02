@@ -1,9 +1,11 @@
 <article class="recipe">
-  <img
-    src="{{ recipe.imageUrl }}"
-    alt="{{ recipe.title }}"
-    class="responsive-image"
-  />
+  <div class="img">
+    <img
+      src="{{ recipe.imageUrl }}"
+      alt="{{ recipe.title }}"
+      class="responsive-image"
+    />
+  </div>
   <h3>{{ recipe.title }}</h3>
   <p>{{ recipe.description }}</p>
   <a routerLink="/{{ recipe._id }}/details">Прочети повече</a>

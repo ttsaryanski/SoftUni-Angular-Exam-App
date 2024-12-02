@@ -44,7 +44,7 @@ async function createAccessToken(user) {
     email: user.email,
   };
 
-  const token = await jwt.sign(payload, JWT_SECRET, { expiresIn: "2h" });
+  const token = await jwt.sign(payload, JWT_SECRET, { expiresIn: "1d" });
 
   return {
     user,
