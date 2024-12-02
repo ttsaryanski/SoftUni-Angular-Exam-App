@@ -15,7 +15,7 @@
 }
 
 .recipe-detail img {
-  width: 100%;
+  width: 80%;
 
   margin-bottom: 1em;
   transition: transform 0.3s;
@@ -85,12 +85,16 @@
 
 .command p {
   background-color: #d32f23;
-  color: white;
+  color: #f2edc3;
   padding: 0.5em 1em;
   text-decoration: none;
   display: inline-block;
-  transition: background 0.3s, transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
   font-weight: 700;
   margin-top: 1em;
   margin-left: 20px;
+}
+
+.clicker {
+  cursor: pointer;
 }

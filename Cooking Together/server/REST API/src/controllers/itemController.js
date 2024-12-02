@@ -55,7 +55,7 @@ router.get("/:itemId", async (req, res) => {
   try {
     const item = await itemService.getById(itemId);
 
-    res.json(item);
+    res.status(200).json(item).end();
   } catch (error) {
     res.status(500).json({ message: createErrorMsg(error) });
   }

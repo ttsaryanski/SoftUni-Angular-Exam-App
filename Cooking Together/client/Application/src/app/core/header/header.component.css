@@ -68,3 +68,7 @@ nav ul li a:hover {
   list-style: none;
   margin-right: 30px;
 }
+
+.clicker {
+  cursor: pointer;
+}

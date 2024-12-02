@@ -21,9 +21,7 @@ export class HeaderComponent {
     return this.userService.user?.username || '';
   }
 
-  logout(event: Event) {
-    event.preventDefault();
-
+  logout() {
     this.userService.logout().subscribe(() => {
       this.router.navigate(['/home']);
     });

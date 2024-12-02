@@ -38,7 +38,7 @@ const itemSchema = new Schema({
     type: Types.ObjectId,
     ref: "User",
   },
-  usersList: [
+  likes: [
     {
       type: Types.ObjectId,
       ref: "User",

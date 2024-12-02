@@ -1,38 +1,40 @@
 <div class="main">
   <article class="recipe-detail">
-    <img src="images/IMG_4807.jpg" alt="Spaghetti carbonara" />
-    <h2>Spaghetti carbonara</h2>
+    <img src="{{ recipe?.imageUrl }}" alt="{{ recipe?.title }}" />
+    <h2>{{ recipe?.title }}</h2>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-      laudantium eum ipsum in, illo dolorum.
+      {{ recipe?.description }}
     </p>
 
     <h3>-----------------------------------------------------</h3>
 
-    <h3>Ingredients:</h3>
+    <h3>Необходими продукти:</h3>
     <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam,
-      laborum. Dolorem eveniet rem nesciunt iure.
+      {{ recipe?.ingredients }}
     </p>
 
     <h3>-----------------------------------------------------</h3>
 
-    <h3>Instructions:</h3>
+    <h3>Начин на приготвяне:</h3>
     <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. At corporis
-      asperiores ipsum, modi optio eaque?
+      {{ recipe?.instructions }}
     </p>
 
     <h3>-----------------------------------------------------</h3>
 
-    <h3>People who recommend: 0</h3>
+    <h3>Харесано от: {{ recipe?.likes?.length }} потребителя</h3>
   </article>
-
+  @if (isLoggedIn) {
   <div class="command">
-    <a href="#">Edit</a>
-    <a href="#">Delete</a>
-
-    <a href="#">Recommend</a>
-    <p>Already recommended</p>
+    @if (isOwner) {
+    <a href="#">Редактирай</a>
+    <a href="#">Изтрий</a>
+    }
+    <!-- -->
+    @else {
+    <a class="clicker" (click)="like()">Харесай</a>
+    <p>Вие вече сте харесали тази рецепта</p>
+    }
   </div>
+  }
 </div>

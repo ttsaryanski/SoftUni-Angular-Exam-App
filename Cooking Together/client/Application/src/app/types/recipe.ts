@@ -9,6 +9,6 @@ export interface Recipe {
   imageUrl: string;
   created_at: string;
   updatedAt: string;
-  author: User;
+  _ownerId: string;
   likes: string[];
 }

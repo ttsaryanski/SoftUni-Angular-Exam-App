@@ -39,4 +39,8 @@ export class RecipesService {
 
     return this.http.post<Recipe>(`/api/item`, payload);
   }
+
+  getRecipeById(id: string) {
+    return this.http.get<Recipe>(`/api/item/${id}`);
+  }
 }

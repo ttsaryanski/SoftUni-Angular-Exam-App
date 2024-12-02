@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import bcrypt from "bcrypt";
 
 import { SALT_ROUNDS } from "../config/constans.js";
@@ -32,6 +32,12 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  recipes: [
+    {
+      type: Types.ObjectId,
+      ref: "Item",
+    },
+  ],
 });
 
 userSchema.pre("save", async function () {

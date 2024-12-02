@@ -13,7 +13,7 @@
     <li>
       <a class="no-uppercase" routerLink="/profile">ДОБРЕ ДОШЪЛ {{ name }}</a>
     </li>
-    <li><a href="#" (click)="logout($event)">Изход</a></li>
+    <li><a class="clicker" (click)="logout()">Изход</a></li>
     } @else {
     <li><a routerLink="/login">Вход</a></li>
     <li><a routerLink="/register">Регистрация</a></li>
