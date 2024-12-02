@@ -92,4 +92,17 @@ router.put("/:itemId", async (req, res) => {
   }
 });
 
+router.post("/:itemId/like", authMiddleware, async (req, res) => {
+  const itemId = req.params.itemId;
+  const userId = req.body.params.userId;
+
+  try {
+    const item = await itemService.like(itemId, userId);
+
+    res.status(200).json(item).end();
+  } catch (error) {
+    res.status(500).json({ message: createErrorMsg(error) });
+  }
+});
+
 export default router;

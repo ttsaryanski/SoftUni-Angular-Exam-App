@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../../../types/recipe';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipesService } from '../../recipes.service';
 import { UserService } from '../../../user/user.service';
 import { User, UserForAuth } from '../../../types/user';
@@ -16,11 +16,13 @@ import { combineLatest } from 'rxjs';
 export class DetailsComponent implements OnInit {
   recipe: Recipe | null = null;
   isOwner: boolean = false;
+  isLiked: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private recipesService: RecipesService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   get isLoggedIn(): boolean {
@@ -40,6 +42,14 @@ export class DetailsComponent implements OnInit {
   }
 
   like() {
-    console.log('test');
+    if (this.recipe && this.userService.user) {
+      const recipeId = this.recipe._id;
+      const userId = this.userService.user._id;
+
+      this.recipesService.likeRecipe(recipeId, userId).subscribe(() => {
+        this.isLiked = true;
+        this.router.navigate([`/${recipeId}/details`]);
+      });
+    }
   }
 }

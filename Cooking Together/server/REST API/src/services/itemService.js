@@ -24,10 +24,16 @@ const remove = (itemId) => Item.findByIdAndDelete(itemId);
 const edit = (itemId, data) =>
   Item.findByIdAndUpdate(itemId, data, { runValidators: true });
 
+const like = (itemId, userId) =>
+  Item.findByIdAndUpdate(itemId, {
+    $addToSet: { likes: userId, new: true },
+  });
+
 export default {
   getAll,
   create,
   getById,
   remove,
   edit,
+  like,
 };

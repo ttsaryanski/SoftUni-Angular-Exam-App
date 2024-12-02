@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../types/recipe';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserForAuth } from '../types/user';
 
 @Injectable({
@@ -42,5 +42,9 @@ export class RecipesService {
 
   getRecipeById(id: string) {
     return this.http.get<Recipe>(`/api/item/${id}`);
+  }
+
+  likeRecipe(recipeId: string, userId: string) {
+    return this.http.post(`/api/item/${recipeId}/like`, { params: { userId } });
   }
 }
