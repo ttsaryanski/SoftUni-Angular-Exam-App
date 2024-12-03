@@ -27,13 +27,20 @@
   @if (isLoggedIn) {
   <div class="command">
     @if (isOwner) {
-    <a href="#">Редактирай</a>
+    <a routerLink="/{{ recipe?._id }}/edit">Редактирай</a>
     <a href="#">Изтрий</a>
     }
     <!-- -->
     @else {
-    <a class="clicker" (click)="like()">Харесай</a>
+    <!-- -->
+    @if (isLiked) {
     <p>Вие вече сте харесали тази рецепта</p>
+    }
+    <!-- -->
+    @else {
+    <a class="clicker" (click)="like()">Харесай</a>
+    }
+    <!-- -->
     }
   </div>
   }

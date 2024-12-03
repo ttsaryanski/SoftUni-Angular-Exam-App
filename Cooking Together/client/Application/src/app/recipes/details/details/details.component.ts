@@ -1,28 +1,28 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Recipe } from '../../../types/recipe';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipesService } from '../../recipes.service';
 import { UserService } from '../../../user/user.service';
-import { User, UserForAuth } from '../../../types/user';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
   recipe: Recipe | null = null;
   isOwner: boolean = false;
   isLiked: boolean = false;
 
+  private likeSubscription: Subscription = new Subscription();
+
   constructor(
     private route: ActivatedRoute,
     private recipesService: RecipesService,
-    private userService: UserService,
-    private router: Router
+    private userService: UserService
   ) {}
 
   get isLoggedIn(): boolean {
@@ -32,13 +32,28 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['recipeId'];
 
-    combineLatest([
-      this.recipesService.getRecipeById(id),
-      this.userService.user$,
-    ]).subscribe(([recipe, user]) => {
-      this.recipe = recipe;
-      this.isOwner = user ? user._id === recipe._ownerId : false;
-    });
+    this.likeSubscription.add(
+      combineLatest([
+        this.recipesService.getRecipeById(id),
+        this.userService.user$,
+      ]).subscribe(([recipe, user]) => {
+        this.recipe = recipe;
+        this.isOwner = user ? user._id === recipe._ownerId : false;
+        this.isLiked = recipe.likes.includes(user?._id || '');
+      })
+    );
+
+    this.likeSubscription.add(
+      this.recipesService.likeUpdated$.subscribe(() => {
+        this.recipesService.getRecipeById(id).subscribe((recipe) => {
+          this.recipe = recipe;
+        });
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.likeSubscription.unsubscribe();
   }
 
   like() {
@@ -48,7 +63,6 @@ export class DetailsComponent implements OnInit {
 
       this.recipesService.likeRecipe(recipeId, userId).subscribe(() => {
         this.isLiked = true;
-        this.router.navigate([`/${recipeId}/details`]);
       });
     }
   }

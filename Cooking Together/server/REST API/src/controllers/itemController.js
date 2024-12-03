@@ -80,7 +80,7 @@ router.put("/:itemId", async (req, res) => {
   try {
     const item = await itemService.edit(itemId, data);
 
-    res.json(item);
+    res.status(200).json(item).end();
   } catch (error) {
     if (error.message.includes("validation")) {
       res.status(400).json({ message: createErrorMsg(error) });

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../types/recipe';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { UserForAuth } from '../types/user';
 
 @Injectable({
@@ -10,6 +10,9 @@ import { UserForAuth } from '../types/user';
 export class RecipesService {
   private user$$ = new BehaviorSubject<UserForAuth | null>(null);
   private user$ = this.user$$.asObservable();
+
+  private likeUpdated$$ = new BehaviorSubject<boolean>(false);
+  public likeUpdated$ = this.likeUpdated$$.asObservable();
 
   user: UserForAuth | null = null;
 
@@ -44,7 +47,17 @@ export class RecipesService {
     return this.http.get<Recipe>(`/api/item/${id}`);
   }
 
+  editRecipe(id: string, data: Partial<Recipe>) {
+    return this.http.put<Recipe>(`/api/item/${id}`, data);
+  }
+
   likeRecipe(recipeId: string, userId: string) {
-    return this.http.post(`/api/item/${recipeId}/like`, { params: { userId } });
+    return this.http
+      .post(`/api/item/${recipeId}/like`, { params: { userId } })
+      .pipe(
+        tap(() => {
+          this.likeUpdated$$.next(true);
+        })
+      );
   }
 }

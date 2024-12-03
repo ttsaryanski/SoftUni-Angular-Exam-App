@@ -1,15 +1,18 @@
 <div class="main">
-  <section class="create">
-    <h2>Създай своята рецепта</h2>
-    <form #form="ngForm" (ngSubmit)="create(form)">
+  @if (isLoading) {
+  <app-loader />
+  }@else {
+  <section class="edit">
+    <h2>Редактирай</h2>
+    <img src="{{ recipe?.imageUrl }}" alt="{{ recipe?.title }}" />
+    <form #form="ngForm" (ngSubmit)="editRecipe(form)">
       <label for="title">Заглавие:</label>
       <input
         [class]="setClass(title)"
         type="text"
         id="title"
         name="title"
-        placeholder="Вкусни ребърца с ..."
-        ngModel
+        [(ngModel)]="recipe!.title"
         #title="ngModel"
         required
         minlength="5"
@@ -31,8 +34,7 @@
         [class]="setClass(description)"
         id="description"
         name="description"
-        placeholder="Ребърца на фурна с ..."
-        ngModel
+        [(ngModel)]="recipe!.description"
         #description="ngModel"
         required
         minlength="10"
@@ -54,8 +56,7 @@
         [class]="setClass(ingredients)"
         id="ingredients"
         name="ingredients"
-        placeholder="500гр. ..."
-        ngModel
+        [(ngModel)]="recipe!.ingredients"
         #ingredients="ngModel"
         required
         minlength="10"
@@ -77,8 +78,7 @@
         [class]="setClass(instructions)"
         id="instructions"
         name="instructions"
-        placeholder="Първо ..."
-        ngModel
+        [(ngModel)]="recipe!.instructions"
         #instructions="ngModel"
         required
         minlength="10"
@@ -101,8 +101,7 @@
         type="url"
         id="imageUrl"
         name="imageUrl"
-        placeholder="https://...."
-        ngModel
+        [(ngModel)]="recipe!.imageUrl"
         #imageUrl="ngModel"
         required
         appImageUrl
@@ -118,16 +117,18 @@
         }
       </div>
       }
-      <!--  -->
+      <!-- -->
       @if (hasError) {
       <app-error-msg />
       }
+
       <button
         [disabled]="setButton(form).disabled"
         [style]="setButton(form).style"
       >
-        Създай
+        Запази промените
       </button>
     </form>
   </section>
+  }
 </div>

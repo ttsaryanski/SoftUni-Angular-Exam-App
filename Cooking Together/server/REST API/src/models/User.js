@@ -32,12 +32,6 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  recipes: [
-    {
-      type: Types.ObjectId,
-      ref: "Item",
-    },
-  ],
 });
 
 userSchema.pre("save", async function () {

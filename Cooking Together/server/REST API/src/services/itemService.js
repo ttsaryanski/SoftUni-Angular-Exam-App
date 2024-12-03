@@ -21,8 +21,14 @@ const getById = (itemId) => Item.findById(itemId);
 
 const remove = (itemId) => Item.findByIdAndDelete(itemId);
 
-const edit = (itemId, data) =>
-  Item.findByIdAndUpdate(itemId, data, { runValidators: true });
+const edit = (itemId, data) => {
+  data.dateUpdate = Date.now();
+
+  return Item.findByIdAndUpdate(itemId, data, {
+    runValidators: true,
+    new: true,
+  });
+};
 
 const like = (itemId, userId) =>
   Item.findByIdAndUpdate(itemId, {

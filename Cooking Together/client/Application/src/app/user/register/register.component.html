@@ -16,11 +16,11 @@
       @if (username?.touched) {
       <div>
         @if (username?.errors?.['required']) {
-        <p class="error">Name is required!</p>
+        <p class="error">Моля въведете име!</p>
         }
         <!-- -->
         @if (username?.errors?.['minlength']) {
-        <p class="error">Name must be at least 3 characters!</p>
+        <p class="error">Името е най-малко 3 символа!</p>
         }
       </div>
       }
@@ -39,11 +39,11 @@
       @if (email?.touched) {
       <div>
         @if (email?.errors?.['required']) {
-        <p class="error">Email is required!</p>
+        <p class="error">Моля въведете имейл!</p>
         }
         <!-- -->
         @if (email?.errors?.['emailValidator']) {
-        <p class="error">Email is not valid!</p>
+        <p class="error">Невалиден имейл!</p>
         }
       </div>
       }
@@ -62,11 +62,11 @@
       @if (password?.touched) {
       <div>
         @if (password?.errors?.['required']) {
-        <p class="error">Password is required!</p>
+        <p class="error">Моля въведете парола!</p>
         }
         <!-- -->
         @if (password?.errors?.['minlength']) {
-        <p class="error">Password must be at least 3 characters!</p>
+        <p class="error">Паролата е най-малко 3 символа!</p>
         }
       </div>
       }
@@ -85,11 +85,11 @@
       @if (rePassword?.touched) {
       <div>
         @if (rePassword?.errors?.['required']) {
-        <p class="error">Password is required!</p>
+        <p class="error">Моля въведете отново паролата!</p>
         }
         <!-- -->
         @if (rePassword?.errors?.['matchPassword']) {
-        <p class="error">Repeat Password does not match password!</p>
+        <p class="error">Не съвпада!</p>
         }
       </div>
       }
