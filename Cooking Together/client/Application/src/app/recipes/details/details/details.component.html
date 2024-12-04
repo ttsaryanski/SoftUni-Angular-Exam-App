@@ -28,12 +28,13 @@
     <h3>-----------------------------------------------------</h3>
 
     <h3>Харесано от: {{ recipe?.likes?.length }} потребителя</h3>
+    @if (hasError) {<app-error-msg />}
   </article>
   @if (isLoggedIn) {
   <div class="command">
     @if (isOwner) {
     <a routerLink="/{{ recipe?._id }}/edit">Редактирай</a>
-    <a href="#">Изтрий</a>
+    <a class="clicker" (click)="delRecipe()">Изтрий</a>
     }
     <!-- -->
     @else {

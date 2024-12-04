@@ -51,6 +51,10 @@ export class RecipesService {
     return this.http.put<Recipe>(`/api/item/${id}`, data);
   }
 
+  removeRecipe(id: string) {
+    return this.http.delete(`/api/item/${id}`);
+  }
+
   likeRecipe(recipeId: string, userId: string) {
     return this.http
       .post(`/api/item/${recipeId}/like`, { params: { userId } })

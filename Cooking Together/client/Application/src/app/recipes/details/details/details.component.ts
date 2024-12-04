@@ -5,11 +5,13 @@ import { RecipesService } from '../../recipes.service';
 import { UserService } from '../../../user/user.service';
 import { combineLatest, Subscription } from 'rxjs';
 import { LoaderComponent } from '../../../shared/loader/loader.component';
+import { ErrorMsgService } from '../../../core/error-msg/error-msg.service';
+import { ErrorMsgComponent } from '../../../core/error-msg/error-msg.component';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterLink, LoaderComponent],
+  imports: [RouterLink, LoaderComponent, ErrorMsgComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })
@@ -18,14 +20,21 @@ export class DetailsComponent implements OnInit, OnDestroy {
   isOwner: boolean = false;
   isLiked: boolean = false;
   isLoading: boolean = true;
+  hasError: boolean = false;
 
   private likeSubscription: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
     private recipesService: RecipesService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private router: Router,
+    private errorMsgService: ErrorMsgService
+  ) {
+    this.errorMsgService.apiError$.subscribe((err) => {
+      this.hasError = !!err;
+    });
+  }
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
@@ -64,9 +73,29 @@ export class DetailsComponent implements OnInit, OnDestroy {
       const recipeId = this.recipe._id;
       const userId = this.userService.user._id;
 
-      this.recipesService.likeRecipe(recipeId, userId).subscribe(() => {
-        this.isLiked = true;
+      this.recipesService.likeRecipe(recipeId, userId).subscribe({
+        next: () => {
+          this.isLiked = true;
+          this.hasError = false;
+          this.errorMsgService.clearError();
+        },
+        error: () => {
+          this.hasError = true;
+        },
       });
     }
+  }
+
+  delRecipe() {
+    this.recipesService.removeRecipe(this.recipe!._id).subscribe({
+      next: () => {
+        this.hasError = false;
+        this.errorMsgService.clearError();
+        this.router.navigate(['/catalog']);
+      },
+      error: () => {
+        this.hasError = true;
+      },
+    });
   }
 }
