@@ -1,4 +1,9 @@
 <div class="main">
+  @if (isLoading) {
+  <app-loader />
+  }
+  <!-- -->
+  @else {
   <article class="recipe-detail">
     <img src="{{ recipe?.imageUrl }}" alt="{{ recipe?.title }}" />
     <h2>{{ recipe?.title }}</h2>
@@ -43,5 +48,5 @@
     <!-- -->
     }
   </div>
-  }
+  } }
 </div>

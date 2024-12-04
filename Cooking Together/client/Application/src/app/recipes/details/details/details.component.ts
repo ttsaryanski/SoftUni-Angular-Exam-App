@@ -4,11 +4,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipesService } from '../../recipes.service';
 import { UserService } from '../../../user/user.service';
 import { combineLatest, Subscription } from 'rxjs';
+import { LoaderComponent } from '../../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, LoaderComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })
@@ -16,6 +17,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   recipe: Recipe | null = null;
   isOwner: boolean = false;
   isLiked: boolean = false;
+  isLoading: boolean = true;
 
   private likeSubscription: Subscription = new Subscription();
 
@@ -40,6 +42,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         this.recipe = recipe;
         this.isOwner = user ? user._id === recipe._ownerId : false;
         this.isLiked = recipe.likes.includes(user?._id || '');
+        this.isLoading = false;
       })
     );
 

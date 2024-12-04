@@ -32,9 +32,9 @@
 }
 
 .home a:hover {
-  background-color: #f2edc3;
-  color: #d32f23;
-  transform: scale(1.05);
+  /* background-color: #f2edc3;
+  color: #d32f23; */
+  transform: scale(1.1);
 }
 
 h2 {

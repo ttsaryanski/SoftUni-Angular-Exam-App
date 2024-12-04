@@ -39,7 +39,7 @@
 .login button {
   background-color: #d32f23;
   color: #f2edc3;
-  border: none;
+  /* border: none; */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
   font-weight: 500;
@@ -48,8 +48,8 @@
 }
 
 .login button:hover {
-  background-color: #f2edc3;
-  color: #d32f23;
+  /* background-color: #d32f238f;
+  color: #d32f23; */
   transform: scale(1.05);
 }
 

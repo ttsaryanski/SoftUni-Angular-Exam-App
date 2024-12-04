@@ -63,3 +63,8 @@ body::before {
     padding: 0;
   }
 }
+
+/* body {
+  margin: 0;
+  padding-top: 6em;
+} */
