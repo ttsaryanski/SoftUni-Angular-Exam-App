@@ -64,4 +64,8 @@ export class RecipesService {
         })
       );
   }
+
+  getTopThreeRecipe() {
+    return this.http.get<Recipe[]>('/api/item/top/three');
+  }
 }

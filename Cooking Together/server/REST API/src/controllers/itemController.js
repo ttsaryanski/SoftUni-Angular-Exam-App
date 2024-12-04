@@ -105,4 +105,14 @@ router.post("/:itemId/like", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/top/three", async (req, res) => {
+  try {
+    const items = await itemService.topThree();
+
+    res.status(200).json(items).end();
+  } catch (error) {
+    res.status(500).json({ message: createErrorMsg(error) });
+  }
+});
+
 export default router;

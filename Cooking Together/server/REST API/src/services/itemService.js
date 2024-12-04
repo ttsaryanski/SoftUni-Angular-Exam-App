@@ -35,6 +35,27 @@ const like = (itemId, userId) =>
     $addToSet: { likes: userId, new: true },
   });
 
+const topThree = () => {
+  const topRecipes = Item.aggregate([
+    {
+      $addFields: {
+        likesCount: { $size: "$likes" },
+      },
+    },
+    {
+      $sort: {
+        likesCount: -1,
+        dateUpdate: -1,
+      },
+    },
+    {
+      $limit: 3,
+    },
+  ]);
+
+  return topRecipes;
+};
+
 export default {
   getAll,
   create,
@@ -42,4 +63,5 @@ export default {
   remove,
   edit,
   like,
+  topThree,
 };

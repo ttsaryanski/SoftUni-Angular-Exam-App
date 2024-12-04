@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(private recipeService: RecipesService) {}
 
   ngOnInit(): void {
-    this.recipeService.getRecipe(3).subscribe((recipes) => {
+    this.recipeService.getTopThreeRecipe().subscribe((recipes) => {
       this.recipes = recipes;
       this.isLoading = false;
     });
