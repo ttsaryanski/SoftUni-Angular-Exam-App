@@ -29,6 +29,13 @@
 
     <h3>Харесано от: {{ recipe?.likes?.length }} потребителя</h3>
     @if (hasError) {<app-error-msg />}
+    <div class="date">
+      <h6>
+        Тази рецепта е добавена на:
+        {{ recipe?.dateCreated | date : "dd-MM-yyyy" }}
+      </h6>
+      <h6>Автора промени тази рецепта {{ recipe!.dateUpdate | elapsed }}</h6>
+    </div>
   </article>
   @if (isLoggedIn) {
   <div class="command">

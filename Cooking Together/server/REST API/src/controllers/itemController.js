@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   const query = req.query;
 
   try {
-    const items = await itemService.getAll(query);
+    const items = await itemService.getAll(query).sort({ dateCreated: -1 });
 
     res.status(200).json(items).end();
   } catch (error) {
@@ -46,6 +46,16 @@ router.post("/", authMiddleware, async (req, res) => {
         .json({ message: createErrorMsg(error) })
         .end();
     }
+  }
+});
+
+router.get("/top-three", async (req, res) => {
+  try {
+    const items = await itemService.topThree();
+
+    res.status(200).json(items).end();
+  } catch (error) {
+    res.status(500).json({ message: createErrorMsg(error) });
   }
 });
 
@@ -100,16 +110,6 @@ router.post("/:itemId/like", authMiddleware, async (req, res) => {
     const item = await itemService.like(itemId, userId);
 
     res.status(200).json(item).end();
-  } catch (error) {
-    res.status(500).json({ message: createErrorMsg(error) });
-  }
-});
-
-router.get("/top/three", async (req, res) => {
-  try {
-    const items = await itemService.topThree();
-
-    res.status(200).json(items).end();
   } catch (error) {
     res.status(500).json({ message: createErrorMsg(error) });
   }

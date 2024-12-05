@@ -7,8 +7,8 @@ export interface Recipe {
   ingredients: string;
   instructions: string;
   imageUrl: string;
-  created_at: string;
-  updatedAt: string;
+  dateCreated: string;
+  dateUpdate: string;
   _ownerId: string;
   likes: string[];
 }

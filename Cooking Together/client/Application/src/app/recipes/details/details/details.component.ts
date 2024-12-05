@@ -7,11 +7,19 @@ import { combineLatest, Subscription } from 'rxjs';
 import { LoaderComponent } from '../../../shared/loader/loader.component';
 import { ErrorMsgService } from '../../../core/error-msg/error-msg.service';
 import { ErrorMsgComponent } from '../../../core/error-msg/error-msg.component';
+import { DatePipe } from '@angular/common';
+import { ElapsedPipe } from '../../../shared/pipes/elapsed.pipe';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [RouterLink, LoaderComponent, ErrorMsgComponent],
+  imports: [
+    RouterLink,
+    LoaderComponent,
+    ErrorMsgComponent,
+    DatePipe,
+    ElapsedPipe,
+  ],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })

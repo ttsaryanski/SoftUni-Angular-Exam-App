@@ -1,12 +1,14 @@
 .recipe-detail {
   background: #f2edc3;
   padding: 2em;
-
+  padding-bottom: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   max-width: 600px;
   margin: 2em auto;
   text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .recipe-detail:hover {
@@ -51,6 +53,11 @@
 .recipe-detail ul li,
 .recipe-detail ol li {
   margin-bottom: 0.5em;
+}
+
+.recipe-detail p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .command {
@@ -99,4 +106,15 @@
 
 .clicker {
   cursor: pointer;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.date h6 {
+  margin-right: 10px;
+  margin-bottom: 0;
+  color: #d32f23;
 }
