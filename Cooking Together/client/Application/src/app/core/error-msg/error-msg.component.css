@@ -11,6 +11,7 @@
   text-decoration: underline;
   box-shadow: 0 5px 10px rgb(204, 204, 204);
   background-color: rgba(238, 74, 74, 0.699);
+  text-align: center;
 }
 
 .error-message {
