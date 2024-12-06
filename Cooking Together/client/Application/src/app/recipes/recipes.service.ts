@@ -22,10 +22,20 @@ export class RecipesService {
     });
   }
 
-  getRecipe(limit?: number) {
+  getRecipe(limit?: number, query?: string) {
     let url = `/api/item`;
+    const params: string[] = [];
+
     if (limit) {
-      url += `?limit=${limit}`;
+      params.push(`limit=${limit}`);
+    }
+
+    if (query) {
+      params.push(`search=${encodeURIComponent(query)}`);
+    }
+
+    if (params.length > 0) {
+      url += `?${params.join('&')}`;
     }
 
     return this.http.get<Recipe[]>(url);

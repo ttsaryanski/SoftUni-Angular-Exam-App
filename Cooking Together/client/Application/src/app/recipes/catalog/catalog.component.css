@@ -7,12 +7,9 @@ h2 {
   text-transform: none;
   text-shadow: cornflowerblue;
   font-weight: bold;
-  /* background: #f2edc3; */
   padding: 30px;
   margin-top: 30px;
-  /* border: 3px; */
   border-bottom-style: solid;
-  /* box-shadow: 0 4px 8px #d32f23; */
   transition: transform 0.3s, box-shadow 0.3s;
   text-shadow: 3px 3px 3px rgba(216, 207, 207, 0.932);
 }

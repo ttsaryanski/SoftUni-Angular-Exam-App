@@ -6,6 +6,7 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 export default function expressInit(app) {
   app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(
     cors({

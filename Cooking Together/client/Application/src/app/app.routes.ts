@@ -7,6 +7,7 @@ import { Page404Component } from './page404/page404/page404.component';
 import { CatalogComponent } from './recipes/catalog/catalog.component';
 import { DetailsComponent } from './recipes/details/details/details.component';
 import { EditComponent } from './recipes/edit/edit.component';
+import { SearchComponent } from './recipes/search/search.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,7 @@ export const routes: Routes = [
 
   { path: 'catalog', component: CatalogComponent },
   { path: 'create', component: CreateComponent },
+  { path: 'search', component: SearchComponent },
   { path: ':recipeId/details', component: DetailsComponent },
   { path: ':recipeId/edit', component: EditComponent },
 

@@ -5,8 +5,8 @@ import Item from "../models/Item.js";
 const getAll = (query = {}) => {
   let items = Item.find();
 
-  if (query.where) {
-    items.find(querystring.parse(query.where.replaceAll('"', "")));
+  if (query.search) {
+    items.find({ title: { $regex: query.search, $options: "i" } });
   }
   if (query.limit) {
     items.find().limit(query.limit).sort({ dateUpdate: -1 });
