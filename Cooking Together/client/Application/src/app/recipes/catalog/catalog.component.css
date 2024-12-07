@@ -22,15 +22,16 @@ h2 {
 }
 
 .recipes {
-  display: flex;
-  justify-content: center;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  flex-wrap: wrap;
+  justify-items: center;
   gap: 50px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   padding-left: 50px;
   padding-right: 50px;
+  padding-bottom: 100px;
 }
 
 .no-post {
@@ -45,7 +46,12 @@ h2 {
 }
 
 .pagination {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 15px;
   width: 100%;
