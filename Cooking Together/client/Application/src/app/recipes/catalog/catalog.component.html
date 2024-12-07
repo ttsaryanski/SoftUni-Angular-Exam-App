@@ -1,7 +1,11 @@
 <div class="main">
   <section class="featured-recipes">
     <h2>Всички рецепти</h2>
-    @if (isLoading) {
+    @if (hasError) {
+    <app-error-msg />
+    }
+    <!-- -->
+    @else if (isLoading) {
     <app-loader />
     }
     <!-- -->

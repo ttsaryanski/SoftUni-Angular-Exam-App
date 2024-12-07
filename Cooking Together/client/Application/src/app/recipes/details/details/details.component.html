@@ -41,7 +41,7 @@
   <div class="command">
     @if (isOwner) {
     <a routerLink="/{{ recipe?._id }}/edit">Редактирай</a>
-    <a class="clicker" (click)="delRecipe()">Изтрий</a>
+    <a class="clicker" (click)="deleteRecipe()">Изтрий</a>
     }
     <!-- -->
     @else {
@@ -51,7 +51,7 @@
     }
     <!-- -->
     @else {
-    <a class="clicker" (click)="like()">Харесай</a>
+    <a class="clicker" (click)="likeRecipe()">Харесай</a>
     }
     <!-- -->
     }

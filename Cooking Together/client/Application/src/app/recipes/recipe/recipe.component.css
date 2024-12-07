@@ -36,7 +36,7 @@
 
 .recipe h3 {
   background-color: #d32f23;
-  color: white;
+  color: #f2edc3;
   padding: 0.5em;
   font-size: 1.2em;
   margin-bottom: 0.5em;
@@ -45,7 +45,6 @@
 .recipe p {
   margin: 1em 0;
   color: #000000;
-  /*height: 60px; Ensures consistent height */
   overflow: hidden;
   text-overflow: ellipsis;
   text-shadow: 3px 3px 3px rgba(216, 207, 207, 0.932);
@@ -53,7 +52,7 @@
 
 .recipe a {
   background-color: #d32f23;
-  color: white;
+  color: #f2edc3;
   padding: 0.5em 1em;
   text-decoration: none;
   display: inline-block;
@@ -65,7 +64,5 @@
 }
 
 .recipe a:hover {
-  /* background-color: #f2edc3;
-  color: #d32f23; */
   transform: scale(1.15);
 }

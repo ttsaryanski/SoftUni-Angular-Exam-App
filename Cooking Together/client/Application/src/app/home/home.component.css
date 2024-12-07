@@ -20,7 +20,7 @@
 
 .home .btn {
   background-color: #d32f23;
-  color: white;
+  color: #f2edc3;
   padding: 0.5em 1em;
   text-decoration: none;
   display: inline-block;
@@ -32,8 +32,6 @@
 }
 
 .home a:hover {
-  /* background-color: #f2edc3;
-  color: #d32f23; */
   transform: scale(1.1);
 }
 

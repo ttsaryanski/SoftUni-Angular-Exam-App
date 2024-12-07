@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
       },
       error: () => {
         this.hasError = true;
-        this.isLoading = true;
+        this.isLoading = false;
       },
     });
   }

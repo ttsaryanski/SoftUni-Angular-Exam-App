@@ -12,7 +12,11 @@
       />
       <button>Търси</button>
     </form>
-    @if (isLoading) {
+    @if (hasError) {
+    <app-error-msg />
+    }
+    <!-- -->
+    @else if (isLoading) {
     <app-loader />
     }
     <!-- -->
