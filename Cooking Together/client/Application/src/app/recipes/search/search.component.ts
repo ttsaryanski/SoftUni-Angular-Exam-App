@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { RecipesService } from '../recipes.service';
+import { FormsModule, NgForm } from '@angular/forms';
+
 import { Recipe } from '../../types/recipe';
+
+import { RecipesService } from '../recipes.service';
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { RecipeComponent } from '../recipe/recipe.component';
-import { FormsModule, NgForm } from '@angular/forms';
-import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
 import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
 
 @Component({

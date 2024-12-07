@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Recipe } from '../types/recipe';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap } from 'rxjs';
+
+import { Recipe } from '../types/recipe';
 import { UserForAuth } from '../types/user';
 
 @Injectable({
@@ -77,5 +78,13 @@ export class RecipesService {
 
   getTopThreeRecipe() {
     return this.http.get<Recipe[]>('/api/item/top-three');
+  }
+
+  getProfileRecipe() {
+    return this.http.get<Recipe[]>('/api/item/profileItem');
+  }
+
+  getProfileLikedRecipe() {
+    return this.http.get<Recipe[]>('/api/item/profileLiked');
   }
 }

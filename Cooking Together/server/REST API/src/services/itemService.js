@@ -56,6 +56,10 @@ const topThree = () => {
   return topRecipes;
 };
 
+const getByOwnerId = (ownerId) => Item.find({ _ownerId: ownerId });
+
+const getByLikedId = (userId) => Item.find({ likes: userId });
+
 export default {
   getAll,
   create,
@@ -64,4 +68,6 @@ export default {
   edit,
   like,
   topThree,
+  getByOwnerId,
+  getByLikedId,
 };

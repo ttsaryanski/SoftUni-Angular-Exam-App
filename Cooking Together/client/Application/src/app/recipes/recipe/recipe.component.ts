@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Recipe } from '../../types/recipe';
 import { RouterLink } from '@angular/router';
+
+import { Recipe } from '../../types/recipe';
+
 import { SlicePipe } from '../../shared/pipes/slice.pipe';
 
 @Component({

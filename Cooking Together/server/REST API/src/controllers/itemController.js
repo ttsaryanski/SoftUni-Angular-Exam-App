@@ -59,6 +59,30 @@ router.get("/top-three", async (req, res) => {
   }
 });
 
+router.get("/profileItem", async (req, res) => {
+  const userId = await req.cookies?.auth?.user?._id;
+
+  try {
+    const items = await itemService.getByOwnerId(userId);
+
+    res.status(200).json(items).end();
+  } catch (error) {
+    res.status(500).json({ message: createErrorMsg(error) });
+  }
+});
+
+router.get("/profileLiked", async (req, res) => {
+  const userId = await req.cookies?.auth?.user?._id;
+
+  try {
+    const items = await itemService.getByLikedId(userId);
+
+    res.status(200).json(items).end();
+  } catch (error) {
+    res.status(500).json({ message: createErrorMsg(error) });
+  }
+});
+
 router.get("/:itemId", async (req, res) => {
   const itemId = req.params.itemId;
 

@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { LoaderComponent } from '../../shared/loader/loader.component';
-import { RecipesService } from '../recipes.service';
+
 import { Recipe } from '../../types/recipe';
+
+import { RecipesService } from '../recipes.service';
+import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
+import { LoaderComponent } from '../../shared/loader/loader.component';
 import { RecipeComponent } from '../recipe/recipe.component';
 import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
-import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
 
 @Component({
   selector: 'app-catalog',

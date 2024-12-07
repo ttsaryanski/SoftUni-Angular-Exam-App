@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../../types/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecipesService } from '../recipes.service';
 import { FormsModule, NgForm } from '@angular/forms';
+
+import { Recipe } from '../../types/recipe';
+
 import {
   setButtonAttributes,
   setImgErrorClass,
   setNameErrorClass,
 } from '../../utils/setClasses';
 import { ImageUrlDirective } from '../../directives/image-url.directive';
-import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
-import { LoaderComponent } from '../../shared/loader/loader.component';
+
+import { RecipesService } from '../recipes.service';
 import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
 
 @Component({
   selector: 'app-edit',

@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+
 import {
   setButtonAttributes,
   setEmailErrorClass,
   setNameErrorClass,
 } from '../../utils/setClasses';
 import { EmailDirective } from '../../directives/email.directive';
-import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
+
 import { UserService } from '../user.service';
 import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
+import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
 
 @Component({
   selector: 'app-login',

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LoaderComponent } from '../shared/loader/loader.component';
-import { RecipesService } from '../recipes/recipes.service';
+
 import { Recipe } from '../types/recipe';
-import { RecipeComponent } from '../recipes/recipe/recipe.component';
+
+import { RecipesService } from '../recipes/recipes.service';
 import { ErrorMsgService } from '../core/error-msg/error-msg.service';
+
+import { LoaderComponent } from '../shared/loader/loader.component';
+import { RecipeComponent } from '../recipes/recipe/recipe.component';
 import { ErrorMsgComponent } from '../core/error-msg/error-msg.component';
 
 @Component({

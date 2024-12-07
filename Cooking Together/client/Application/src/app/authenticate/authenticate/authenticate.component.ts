@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoaderComponent } from '../../shared/loader/loader.component';
-import { UserService } from '../../user/user.service';
+
 import { UserForAuth } from '../../types/user';
+
+import { UserService } from '../../user/user.service';
+
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-authenticate',

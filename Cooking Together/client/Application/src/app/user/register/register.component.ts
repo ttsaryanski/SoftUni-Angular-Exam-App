@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+
 import {
   setButtonAttributes,
   setEmailErrorClass,
@@ -9,8 +10,10 @@ import {
 } from '../../utils/setClasses';
 import { EmailDirective } from '../../directives/email.directive';
 import { MatchPasswordDirective } from '../../directives/match-password.directive';
+
 import { UserService } from '../user.service';
 import { ErrorMsgService } from '../../core/error-msg/error-msg.service';
+
 import { ErrorMsgComponent } from '../../core/error-msg/error-msg.component';
 
 @Component({
