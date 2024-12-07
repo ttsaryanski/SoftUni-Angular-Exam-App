@@ -1,4 +1,6 @@
-export function setNameErrorClass(name: any): string {
+import { NgModel, NgForm } from '@angular/forms';
+
+export function setNameErrorClass(name: NgModel | null): string {
   if (name?.touched && name?.errors?.['required']) {
     return 'border-error';
   }
@@ -8,7 +10,7 @@ export function setNameErrorClass(name: any): string {
   return '';
 }
 
-export function setEmailErrorClass(email: any): string {
+export function setEmailErrorClass(email: NgModel | null): string {
   if (email?.touched && email?.errors?.['required']) {
     return 'border-error';
   }
@@ -18,7 +20,7 @@ export function setEmailErrorClass(email: any): string {
   return '';
 }
 
-export function setImgErrorClass(email: any): string {
+export function setImgErrorClass(email: NgModel | null): string {
   if (email?.touched && email?.errors?.['required']) {
     return 'border-error';
   }
@@ -28,7 +30,7 @@ export function setImgErrorClass(email: any): string {
   return '';
 }
 
-export function setRePassErrorClass(rePass: any): string {
+export function setRePassErrorClass(rePass: NgModel | null): string {
   if (rePass?.touched && rePass?.errors?.['required']) {
     return 'border-error';
   }
@@ -38,11 +40,11 @@ export function setRePassErrorClass(rePass: any): string {
   return '';
 }
 
-export function setButtonAttributes(form: any): {
+export function setButtonAttributes(form: NgForm | null): {
   disabled: boolean;
   style: { [key: string]: string };
 } {
-  const isDisabled = form.invalid;
+  const isDisabled = form?.invalid || false; // Проверяваме дали формата е валидна
   const buttonStyle = {
     backgroundColor: isDisabled ? 'grey' : '',
   };

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 import {
@@ -64,23 +64,26 @@ export class RegisterComponent {
       });
   }
 
-  setNameClass(form: any) {
+  setNameClass(form: NgModel | null) {
     return setNameErrorClass(form);
   }
 
-  setEmailClass(form: any) {
+  setEmailClass(form: NgModel | null) {
     return setEmailErrorClass(form);
   }
 
-  setPasswordClass(form: any) {
+  setPasswordClass(form: NgModel | null) {
     return setNameErrorClass(form);
   }
 
-  setRePassClass(form: any) {
+  setRePassClass(form: NgModel | null) {
     return setRePassErrorClass(form);
   }
 
-  setButton(form: any) {
+  setButton(form: NgForm | null): {
+    disabled: boolean;
+    style: { [key: string]: string };
+  } {
     return setButtonAttributes(form);
   }
 }

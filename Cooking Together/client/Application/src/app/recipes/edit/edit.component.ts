@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 
 import { Recipe } from '../../types/recipe';
 
@@ -63,15 +63,18 @@ export class EditComponent implements OnInit {
     });
   }
 
-  setClass(form: any) {
+  setClass(form: NgModel | null) {
     return setNameErrorClass(form);
   }
 
-  setImgClass(form: any) {
+  setImgClass(form: NgModel | null) {
     return setImgErrorClass(form);
   }
 
-  setButton(form: any) {
+  setButton(form: NgForm | null): {
+    disabled: boolean;
+    style: { [key: string]: string };
+  } {
     return setButtonAttributes(form);
   }
 }
