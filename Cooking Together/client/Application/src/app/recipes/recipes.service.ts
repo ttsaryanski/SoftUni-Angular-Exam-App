@@ -87,4 +87,12 @@ export class RecipesService {
   getProfileLikedRecipe() {
     return this.http.get<Recipe[]>('/api/item/profileLiked');
   }
+
+  getAllToPaginated(page: number, limit: number) {
+    return this.http.get<{
+      items: Recipe[];
+      totalCount: number;
+      totalPages: number;
+    }>('/api/item/paginated', { params: { page, limit } });
+  }
 }

@@ -15,6 +15,22 @@ const getAll = (query = {}) => {
   return items;
 };
 
+const getAllPaginated = async (query = {}) => {
+  const page = parseInt(query.page) || 1;
+  const limit = parseInt(query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  const [items, totalCount] = await Promise.all([
+    Item.find().skip(skip).limit(limit).sort({ dateUpdated: -1 }),
+    Item.countDocuments(),
+  ]);
+
+  const totalPages = Math.ceil(totalCount / limit);
+  const currentPage = page;
+
+  return { items, totalCount, totalPages, currentPage };
+};
+
 const create = (data, userId) => Item.create({ ...data, _ownerId: userId });
 
 const getById = (itemId) => Item.findById(itemId);
@@ -62,6 +78,7 @@ const getByLikedId = (userId) => Item.find({ likes: userId });
 
 export default {
   getAll,
+  getAllPaginated,
   create,
   getById,
   remove,

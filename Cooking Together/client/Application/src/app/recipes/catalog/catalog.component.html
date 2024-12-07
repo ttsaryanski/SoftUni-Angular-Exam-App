@@ -11,9 +11,20 @@
     <!-- -->
     @else {
     <div class="recipes">
-      @if (recipes.length > 0) { @for (recipe of recipes; track $index) {
+      @if (recipes.length > 0) {
+      <!-- -->
+      @for (recipe of recipes; track $index) {
       <app-recipe [recipe]="recipe" />
       }
+      <div class="pagination">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">
+          Предишна
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+          Следваща
+        </button>
+      </div>
       <!-- -->
       }
       <!-- -->

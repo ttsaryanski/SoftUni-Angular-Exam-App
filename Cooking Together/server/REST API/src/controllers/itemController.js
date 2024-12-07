@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   const query = req.query;
 
   try {
-    const items = await itemService.getAll(query).sort({ dateCreated: -1 });
+    const items = await itemService.getAll(query);
 
     res.status(200).json(items).end();
   } catch (error) {
@@ -46,6 +46,24 @@ router.post("/", authMiddleware, async (req, res) => {
         .json({ message: createErrorMsg(error) })
         .end();
     }
+  }
+});
+
+router.get("/paginated", async (req, res) => {
+  const query = req.query;
+
+  try {
+    const result = await itemService.getAllPaginated(query);
+    const payload = {
+      items: result.items,
+      totalCount: result.totalCount,
+      totalPages: result.totalPages,
+      currentPage: result.currentPage,
+    };
+
+    res.status(200).json(payload).end();
+  } catch (error) {
+    res.status(500).json({ message: createErrorMsg(error) });
   }
 });
 
