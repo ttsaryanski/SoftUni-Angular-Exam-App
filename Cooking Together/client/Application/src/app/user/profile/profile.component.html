@@ -14,8 +14,8 @@
         <p>Email: {{ profileDetails.email }}</p>
       </div>
       <div class="date">
-        <h4>Вие сте автор на {{ profileRecipes.length }} рецепти</h4>
-        <h4>Вие сте харесали {{ profileLikedRecipes.length }} рецепти</h4>
+        <h4>Вие сте автор на {{ totalRecipesOwner }} рецепти</h4>
+        <h4>Вие сте харесали {{ totalRecipesLiked }} рецепти</h4>
       </div>
       }
     </div>
@@ -36,6 +36,21 @@
           track $index) {
           <app-recipe [recipe]="recipe" />
           }
+          <div class="pagination">
+            <button
+              (click)="previousPageOwner()"
+              [disabled]="currentPageOwner === 1"
+            >
+              Предишна
+            </button>
+            <span>Page {{ currentPageOwner }} of {{ totalPagesOwner }}</span>
+            <button
+              (click)="nextPageOwner()"
+              [disabled]="currentPageOwner === totalPagesOwner"
+            >
+              Следваща
+            </button>
+          </div>
           <!-- -->
           }
           <!-- -->
@@ -61,6 +76,21 @@
           profileLikedRecipes; track $index) {
           <app-recipe [recipe]="recipe" />
           }
+          <div class="pagination">
+            <button
+              (click)="previousPageLiked()"
+              [disabled]="currentPageLiked === 1"
+            >
+              Предишна
+            </button>
+            <span>Page {{ currentPageLiked }} of {{ totalPagesLiked }}</span>
+            <button
+              (click)="nextPageLiked()"
+              [disabled]="currentPageLiked === totalPagesLiked"
+            >
+              Следваща
+            </button>
+          </div>
           <!-- -->
           }
           <!-- -->

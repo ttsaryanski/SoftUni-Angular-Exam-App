@@ -80,12 +80,20 @@ export class RecipesService {
     return this.http.get<Recipe[]>('/api/item/top-three');
   }
 
-  getProfileRecipe() {
-    return this.http.get<Recipe[]>('/api/item/profileItem');
+  getProfileRecipe(page: number, limit: number) {
+    return this.http.get<{
+      items: Recipe[];
+      totalCount: number;
+      totalPages: number;
+    }>('/api/item/profileItem', { params: { page, limit } });
   }
 
-  getProfileLikedRecipe() {
-    return this.http.get<Recipe[]>('/api/item/profileLiked');
+  getProfileLikedRecipe(page: number, limit: number) {
+    return this.http.get<{
+      items: Recipe[];
+      totalCount: number;
+      totalPages: number;
+    }>('/api/item/profileLiked', { params: { page, limit } });
   }
 
   getAllToPaginated(page: number, limit: number) {

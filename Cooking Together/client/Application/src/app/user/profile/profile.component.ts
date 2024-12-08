@@ -28,6 +28,16 @@ export class ProfileComponent implements OnInit {
     email: '',
   };
 
+  currentPageOwner: number = 1;
+  pageSizeOwner: number = 5;
+  totalRecipesOwner: number = 0;
+  totalPagesOwner: number = 0;
+
+  currentPageLiked: number = 1;
+  pageSizeLiked: number = 5;
+  totalRecipesLiked: number = 0;
+  totalPagesLiked: number = 0;
+
   constructor(
     private userService: UserService,
     private errorMsgService: ErrorMsgService,
@@ -58,32 +68,72 @@ export class ProfileComponent implements OnInit {
   }
 
   likedRecipes() {
-    this.recipesService.getProfileLikedRecipe().subscribe({
-      next: (recipes) => {
-        this.hasError = false;
-        this.errorMsgService.clearError();
-        this.profileLikedRecipes = recipes;
-        this.isLoading = false;
-      },
-      error: () => {
-        this.hasError = true;
-        this.isLoading = false;
-      },
-    });
+    this.recipesService
+      .getProfileLikedRecipe(this.currentPageLiked, this.pageSizeLiked)
+      .subscribe({
+        next: (recipes) => {
+          this.hasError = false;
+          this.errorMsgService.clearError();
+          this.profileLikedRecipes = recipes.items;
+          this.totalRecipesLiked = recipes.totalCount;
+          this.totalPagesLiked = recipes.totalPages;
+          this.isLoading = false;
+        },
+        error: () => {
+          this.hasError = true;
+          this.isLoading = false;
+        },
+      });
   }
 
-  userRecipes() {
-    this.recipesService.getProfileRecipe().subscribe({
-      next: (recipes) => {
-        this.hasError = false;
-        this.errorMsgService.clearError();
-        this.profileRecipes = recipes;
-        this.isLoading = false;
-      },
-      error: () => {
-        this.hasError = true;
-        this.isLoading = false;
-      },
-    });
+  userRecipes(): void {
+    this.recipesService
+      .getProfileRecipe(this.currentPageOwner, this.pageSizeOwner)
+      .subscribe({
+        next: (recipes) => {
+          this.hasError = false;
+          this.errorMsgService.clearError();
+          this.profileRecipes = recipes.items;
+          this.totalRecipesOwner = recipes.totalCount;
+          this.totalPagesOwner = recipes.totalPages;
+          this.isLoading = false;
+        },
+        error: () => {
+          this.hasError = true;
+          this.isLoading = false;
+        },
+      });
+  }
+
+  nextPageOwner(): void {
+    if (
+      this.currentPageOwner <
+      Math.ceil(this.totalRecipesOwner / this.pageSizeOwner)
+    ) {
+      this.currentPageOwner++;
+      this.userRecipes();
+    }
+  }
+  previousPageOwner(): void {
+    if (this.currentPageOwner > 1) {
+      this.currentPageOwner--;
+      this.userRecipes();
+    }
+  }
+
+  nextPageLiked(): void {
+    if (
+      this.currentPageLiked <
+      Math.ceil(this.totalRecipesLiked / this.pageSizeLiked)
+    ) {
+      this.currentPageLiked++;
+      this.userRecipes();
+    }
+  }
+  previousPageLiked(): void {
+    if (this.currentPageLiked > 1) {
+      this.currentPageLiked--;
+      this.userRecipes();
+    }
   }
 }

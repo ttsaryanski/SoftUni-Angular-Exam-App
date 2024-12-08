@@ -79,11 +79,18 @@ router.get("/top-three", async (req, res) => {
 
 router.get("/profileItem", async (req, res) => {
   const userId = await req.cookies?.auth?.user?._id;
+  const query = req.query;
 
   try {
-    const items = await itemService.getByOwnerId(userId);
+    const result = await itemService.getByOwnerId(userId, query);
+    const payload = {
+      items: result.items,
+      totalCount: result.totalCount,
+      totalPages: result.totalPages,
+      currentPage: result.currentPage,
+    };
 
-    res.status(200).json(items).end();
+    res.status(200).json(payload).end();
   } catch (error) {
     res.status(500).json({ message: createErrorMsg(error) });
   }
@@ -91,11 +98,18 @@ router.get("/profileItem", async (req, res) => {
 
 router.get("/profileLiked", async (req, res) => {
   const userId = await req.cookies?.auth?.user?._id;
+  const query = req.query;
 
   try {
-    const items = await itemService.getByLikedId(userId);
+    const result = await itemService.getByLikedId(userId, query);
+    const payload = {
+      items: result.items,
+      totalCount: result.totalCount,
+      totalPages: result.totalPages,
+      currentPage: result.currentPage,
+    };
 
-    res.status(200).json(items).end();
+    res.status(200).json(payload).end();
   } catch (error) {
     res.status(500).json({ message: createErrorMsg(error) });
   }

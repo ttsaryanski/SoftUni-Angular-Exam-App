@@ -17,7 +17,7 @@ const getAll = (query = {}) => {
 
 const getAllPaginated = async (query = {}) => {
   const page = parseInt(query.page) || 1;
-  const limit = parseInt(query.limit) || 10;
+  const limit = parseInt(query.limit) || 9;
   const skip = (page - 1) * limit;
 
   const [items, totalCount] = await Promise.all([
@@ -72,9 +72,43 @@ const topThree = () => {
   return topRecipes;
 };
 
-const getByOwnerId = (ownerId) => Item.find({ _ownerId: ownerId });
+const getByOwnerId = async (ownerId, query = {}) => {
+  const page = parseInt(query.page) || 1;
+  const limit = parseInt(query.limit) || 5;
+  const skip = (page - 1) * limit;
 
-const getByLikedId = (userId) => Item.find({ likes: userId });
+  const [items, totalCount] = await Promise.all([
+    Item.find({ _ownerId: ownerId })
+      .skip(skip)
+      .limit(limit)
+      .sort({ dateUpdated: -1 }),
+    Item.countDocuments({ _ownerId: ownerId }),
+  ]);
+
+  const totalPages = Math.ceil(totalCount / limit);
+  const currentPage = page;
+
+  return { items, totalCount, totalPages, currentPage };
+};
+
+const getByLikedId = async (userId, query = {}) => {
+  const page = parseInt(query.page) || 1;
+  const limit = parseInt(query.limit) || 5;
+  const skip = (page - 1) * limit;
+
+  const [items, totalCount] = await Promise.all([
+    Item.find({ likes: userId })
+      .skip(skip)
+      .limit(limit)
+      .sort({ dateUpdated: -1 }),
+    Item.countDocuments({ likes: userId }),
+  ]);
+
+  const totalPages = Math.ceil(totalCount / limit);
+  const currentPage = page;
+
+  return { items, totalCount, totalPages, currentPage };
+};
 
 export default {
   getAll,
