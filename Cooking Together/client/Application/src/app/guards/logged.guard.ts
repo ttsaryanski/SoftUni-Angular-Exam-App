@@ -19,7 +19,6 @@ export const logedGuard: CanActivateChildFn = (
   return new Observable<boolean>((observer) => {
     userService.user$.subscribe((user) => {
       if (user) {
-        alert('Вие сте логнати в системата!');
         router.navigate(['/home']);
         observer.next(false);
       } else {

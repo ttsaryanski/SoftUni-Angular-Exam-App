@@ -113,6 +113,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   deleteRecipe() {
+    if (!this.isOwner) {
+      return alert('Само авторите могат да изтрият своите рецепти!');
+    }
+
     this.recipesService.removeRecipe(this.recipe!._id).subscribe({
       next: () => {
         this.hasError = false;
