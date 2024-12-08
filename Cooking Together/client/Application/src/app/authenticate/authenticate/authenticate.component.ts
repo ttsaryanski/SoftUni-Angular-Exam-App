@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserForAuth } from '../../types/user';
-
 import { UserService } from '../../user/user.service';
 
 import { LoaderComponent } from '../../shared/loader/loader.component';
