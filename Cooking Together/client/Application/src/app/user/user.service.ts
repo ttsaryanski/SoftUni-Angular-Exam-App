@@ -14,7 +14,6 @@ export class UserService {
   private isLogged$$ = new BehaviorSubject<boolean>(false);
   isLogged$ = this.isLogged$$.asObservable();
 
-  // USER_KEY = '[user]';
   user: UserForAuth | null = null;
 
   get isLogged(): boolean {
@@ -24,14 +23,19 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.user$.subscribe((user) => {
       this.user = user;
-      this.isLogged$$.next(!!user);
     });
+    this.isLogged$$ = new BehaviorSubject<boolean>(!!this.user$$.value);
   }
 
   login(email: string, password: string) {
     return this.http
       .post<UserForAuth>('/api/auth/login', { email, password })
-      .pipe(tap((user) => this.user$$.next(user)));
+      .pipe(
+        tap((user) => {
+          this.user$$.next(user);
+          this.isLogged$$.next(!!user);
+        })
+      );
   }
 
   register(
@@ -47,18 +51,29 @@ export class UserService {
         password,
         rePassword,
       })
-      .pipe(tap((user) => this.user$$.next(user)));
+      .pipe(
+        tap((user) => {
+          this.user$$.next(user);
+          this.isLogged$$.next(!!user);
+        })
+      );
   }
 
   logout() {
-    return this.http
-      .post('/api/auth/logout', {})
-      .pipe(tap(() => this.user$$.next(null)));
+    return this.http.post('/api/auth/logout', {}).pipe(
+      tap(() => {
+        this.user$$.next(null);
+        this.isLogged$$.next(false);
+      })
+    );
   }
 
   getProfile() {
-    return this.http
-      .get<UserForAuth>('/api/auth/profile')
-      .pipe(tap((user) => this.user$$.next(user)));
+    return this.http.get<UserForAuth>('/api/auth/profile').pipe(
+      tap((user) => {
+        this.user$$.next(user);
+        this.isLogged$$.next(!!user);
+      })
+    );
   }
 }

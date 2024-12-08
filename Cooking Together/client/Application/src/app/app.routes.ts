@@ -10,17 +10,27 @@ import { DetailsComponent } from './recipes/details/details/details.component';
 import { EditComponent } from './recipes/edit/edit.component';
 import { SearchComponent } from './recipes/search/search.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { isAuthenticated } from './guards/auth.guard';
+import { logedGuard } from './guards/logged.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'login', component: LoginComponent, canActivate: [logedGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [logedGuard] },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [isAuthenticated],
+  },
 
   { path: 'catalog', component: CatalogComponent },
-  { path: 'create', component: CreateComponent },
+  {
+    path: 'create',
+    component: CreateComponent,
+    canActivate: [isAuthenticated],
+  },
   { path: 'search', component: SearchComponent },
   { path: ':recipeId/details', component: DetailsComponent },
   { path: ':recipeId/edit', component: EditComponent },

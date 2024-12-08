@@ -22,8 +22,11 @@ const authMiddleware = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.error("Token verification failed:", error.message);
-    res.clearCookie("auth").status(401).end();
+    res
+      .clearCookie("auth")
+      .status(401)
+      .send({ message: "Token verification failed" })
+      .end();
   }
 };
 
