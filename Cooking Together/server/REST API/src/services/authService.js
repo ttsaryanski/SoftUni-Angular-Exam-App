@@ -1,18 +1,27 @@
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
 
 import jwt from "../lib/jwt.js";
-import User from "../models/User.js";
-import InvalidToken from "../models/InvalidToken.js";
-import { JWT_SECRET } from "../config/constans.js";
 
-const register = async (username, email, password) => {
+import User from "../models/User.js";
+import File from "../models/File.js";
+import InvalidToken from "../models/InvalidToken.js";
+
+dotenv.config();
+
+const register = async (username, email, password, profilePicture) => {
   const user = await User.findOne({ $or: [{ username }, { email }] });
 
   if (user) {
     throw new Error("This username or email already registered!");
   }
 
-  const createdUser = await User.create({ username, email, password });
+  const createdUser = await User.create({
+    username,
+    email,
+    password,
+    profilePicture: profilePicture || null,
+  });
 
   return createAccessToken(createdUser);
 };
@@ -37,6 +46,8 @@ const logout = (token) => InvalidToken.create({ token });
 
 const getUserById = (id) => User.findById(id);
 
+const saveUserFile = (fileName, fileUrl) => File.create({ fileName, fileUrl });
+
 async function createAccessToken(user) {
   const payload = {
     _id: user._id,
@@ -44,7 +55,9 @@ async function createAccessToken(user) {
     email: user.email,
   };
 
-  const token = await jwt.sign(payload, JWT_SECRET, { expiresIn: "1d" });
+  const token = await jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: "1d",
+  });
 
   return {
     user,
@@ -57,4 +70,5 @@ export default {
   login,
   logout,
   getUserById,
+  saveUserFile,
 };

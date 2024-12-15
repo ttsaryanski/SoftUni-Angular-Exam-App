@@ -1,16 +1,49 @@
 import { Router } from "express";
+import fs from "fs";
+import path from "path";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 
 import authService from "../services/authService.js";
+
+import s3 from "../utils/AWS S3 client.js";
+import upload from "../utils/multerStorage.js";
 import { createErrorMsg } from "../utils/errorUtil.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.post("/register", async (req, res) => {
+router.post("/register", upload.single("profilePicture"), async (req, res) => {
   const { username, email, password, rePassword } = req.body;
+  let profilePicture = null;
+
+  if (req.file) {
+    const filePath = req.file.path;
+
+    const uploadParams = {
+      Bucket: "test-client-bucket-app",
+      Key: path.basename(filePath),
+      Body: fs.createReadStream(filePath),
+    };
+
+    const command = new PutObjectCommand(uploadParams);
+    const s3Response = await s3.send(command);
+
+    const fileName = req.file.originalname;
+    const fileUrl = `https://${uploadParams.Bucket}.s3.amazonaws.com/${uploadParams.Key}`;
+    profilePicture = { fileName, fileUrl };
+
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+  }
 
   try {
-    const accessToken = await authService.register(username, email, password);
+    const accessToken = await authService.register(
+      username,
+      email,
+      password,
+      profilePicture
+    );
 
     res
       .status(200)
