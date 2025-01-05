@@ -25,6 +25,12 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err) => {
       if (err.status === 401 && err.error?.message === 'Invalid token!') {
         //router.navigate(['/home']);
+      } else if (
+        err.status === 404 &&
+        err.error?.message === 'There is no item with this id.'
+      ) {
+        errorMsgService.setError(err);
+        router.navigate(['/404']);
       } else {
         errorMsgService.setError(err);
         // router.navigate(['/error']);

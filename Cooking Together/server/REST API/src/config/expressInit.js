@@ -14,5 +14,6 @@ export default function expressInit(app) {
       credentials: true,
     })
   );
+
   // app.use(authMiddleware);
 }

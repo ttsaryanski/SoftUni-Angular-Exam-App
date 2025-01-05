@@ -1,14 +1,23 @@
-import { connect } from 'mongoose';
+import { connect } from "mongoose";
 
-import { CloudDB_URL } from './constans.js';
+import { LocalDB_URL } from "./constans.js";
 
 export default async function mongooseInit() {
+  try {
+    await connect(LocalDB_URL, { dbName: "CookingTogether" });
+
+    console.log("Successfully connect to local DB!");
+  } catch (error) {
+    console.log("Failed to connect to local DB!");
+    console.log(error.message);
+
     try {
-        await connect(CloudDB_URL, { dbName: 'CookingTogether'});
-    
-        console.log('Successfully connect to cloud DB!');  
+      await connect(process.env.CLOUD_DB_URL, { dbName: "CookingTogether" });
+
+      console.log("Successfully connect to cloud DB!");
     } catch (error) {
-        console.log("Failed to connect to cloud DB!");
-        console.log(error.message);
-    };
-};
+      console.log("Failed to connect to cloud DB!");
+      console.log(error.message);
+    }
+  }
+}

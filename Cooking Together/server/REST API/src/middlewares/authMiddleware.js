@@ -1,9 +1,5 @@
-import dotenv from "dotenv";
-
 import jwt from "../lib/jwt.js";
 import InvaliToken from "../models/InvalidToken.js";
-
-dotenv.config();
 
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies["auth"]?.accessToken || null;
@@ -14,6 +10,7 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const invalidToken = await InvaliToken.findOne({ token });
+
     if (invalidToken) {
       return res.status(403).send({ message: "Invalid token!" }).end();
     }
